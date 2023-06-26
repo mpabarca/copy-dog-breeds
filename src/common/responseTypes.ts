@@ -8,7 +8,11 @@ export type ResponseListImagesByBreed = {
   status: string;
 };
 
+export type BreedSubBreeds = {
+  [breed: string]: string[];
+};
+
 export type ResponseListAllBreeds = {
-  message: string[];
+  message: BreedSubBreeds;
   status: string;
 };
