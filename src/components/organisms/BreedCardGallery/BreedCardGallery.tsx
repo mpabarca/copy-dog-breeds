@@ -10,17 +10,17 @@ export interface BreedCardGalleryProps {
 }
 
 const BreedCardGallery: React.FC<BreedCardGalleryProps> = (props: BreedCardGalleryProps) => {
-  const {list, breedName, showIcon, callImageAPI, shouldRedirect} = props;
-
+  const {list, showIcon, callImageAPI, shouldRedirect, breedName = ''} = props;
   return (
     <>
-      {list.map((breed, index) => (
+      {list.map((element, index) => (
         <DogCard
           key={`index-dogCard-${index}`}
-          breedName={(breed || breedName) as string}
           showIcon={showIcon}
           callImageAPI={callImageAPI}
           shouldRedirect={shouldRedirect}
+          imageUrl={callImageAPI ? '' : element}
+          breedName={callImageAPI ? element : breedName}
         />
       ))}
     </>

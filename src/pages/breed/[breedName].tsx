@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import BreedDetailTemplate from '../../components/template/BreedDetailTemplate/BreedDetailTemplate';
 import {useRouter} from 'next/router';
+import BreedDetailTemplate from '../../components/template/BreedDetailTemplate/BreedDetailTemplate';
 import {getListImagesByBreed} from '../../services/list-images-by-breed';
 import {ResponseListImagesByBreed} from '../../common/responseTypes';
 
-const BreedDetail: React.FC = () => {
+const BreedDetailPage: React.FC = () => {
   const router = useRouter();
-  const {breedName} = router.query;
+  const breedName = router.query.breedName;
 
   const [breedListImages, setBreedListImages] = useState<string[]>([]);
   const [status, setStatus] = useState<boolean>(true);
@@ -23,9 +23,9 @@ const BreedDetail: React.FC = () => {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    breedName && getData();
+  }, [breedName]);
 
-  return <>{status && <BreedDetailTemplate breedListImages={breedListImages} breedName={breedName as string} />}</>;
+  return <>{status && <BreedDetailTemplate breedName={breedName as string} breedListImages={breedListImages} />}</>;
 };
-export default BreedDetail;
+export default BreedDetailPage;

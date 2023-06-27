@@ -6,14 +6,14 @@ import DogImage from '../../atoms/DogImage/DogImage';
 
 export interface DogCardProps {
   breedName: string;
+  imageUrl: string;
   showIcon: boolean;
   callImageAPI: boolean;
   shouldRedirect: boolean;
 }
 
 const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
-  const {breedName, showIcon, callImageAPI, shouldRedirect} = props;
-
+  const {breedName, imageUrl, showIcon, callImageAPI, shouldRedirect} = props;
   const [breedImage, setBreedImage] = useState<string>('');
   const [status, setStatus] = useState<boolean>(true);
 
@@ -29,8 +29,8 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
   };
 
   useEffect(() => {
-    callImageAPI && getData();
-  }, [callImageAPI]);
+    callImageAPI ? getData() : setBreedImage(imageUrl);
+  }, [callImageAPI, imageUrl, breedName]);
 
   const redirectCard = (
     <Link type="button" href={`/breed/${breedName}`}>
@@ -41,9 +41,8 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
 
   const iconCard = (
     <div>
-      <h1>{breedName}</h1>
       {showIcon && <button>Icon</button>}
-      {status && <DogImage breedName={breedName} imageUrl={breedImage} />}
+      {status && <DogImage imageUrl={breedImage} />}
     </div>
   );
 
