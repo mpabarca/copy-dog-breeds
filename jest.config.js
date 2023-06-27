@@ -2,8 +2,8 @@
 
 const config = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts', '@testing-library/jest-dom/extend-expect'],
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx}'],
   coveragePathIgnorePatterns: ['<rootDir>/src/.next/', '<rootDir>/src/components/Svg', '<rootDir>/src/configs/seo'],
@@ -19,6 +19,9 @@ const config = {
   verbose: true,
   transformIgnorePatterns: ['/node_modules/(?!(vest|@hookform/resolvers))'],
   maxWorkers: 6,
+  transform: {
+    '^.+\\.(ts|tsx)?$': 'ts-jest',
+  },
 };
 
 module.exports = config;
