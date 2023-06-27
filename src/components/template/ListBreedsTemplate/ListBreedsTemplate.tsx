@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {getListAllBreeds} from '../../../services/list-all-breeds';
 import {ResponseListAllBreeds} from '../../../common/responseTypes';
+import {getListAllBreeds} from '../../../services/list-all-breeds';
 import BreedRandomImage from '../../molecules/BreedRandomImage/BreedRandomImage';
 
 const ListBreedsTemplate: React.FC = () => {
@@ -13,7 +13,7 @@ const ListBreedsTemplate: React.FC = () => {
       setBreedsList(Object.keys(response.message));
       setStatus(true);
     } catch (error) {
-      console.error(error.message);
+      console.error(error instanceof Error ? error.message : error);
       setStatus(false);
     }
   };
@@ -24,9 +24,10 @@ const ListBreedsTemplate: React.FC = () => {
 
   return (
     <>
-      {breedsList.map((breed, index) => {
-        return <BreedRandomImage key={`index-breeRandomImage-${index}`} breedName={breed} />;
-      })}
+      {status &&
+        breedsList.map((breed, index) => {
+          return <BreedRandomImage key={`index-breeRandomImage-${index}`} breedName={breed} />;
+        })}
     </>
   );
 };
