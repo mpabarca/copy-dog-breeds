@@ -1,6 +1,6 @@
 import React from 'react';
 import {act, render} from '@testing-library/react';
-import BreedRandomImage, {BreedRandomImageProps} from './BreedRandomImage';
+import BreedCardGallery, {BreedCardGalleryProps} from './BreedCardGallery';
 import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
 
 jest.mock('../../../services/random-image-by-breed', () => ({
@@ -11,20 +11,20 @@ jest.mock('../../../services/random-image-by-breed', () => ({
 
 jest.mock('../../atoms/BreedImage/BreedImage');
 
-describe('BreedRandomImage test', () => {
-  const props: BreedRandomImageProps = {
+describe('BreedCardGallery test', () => {
+  const props: BreedCardGalleryProps = {
     breedName: 'hound',
   };
 
-  it('should render BreedRandomImage component', async () => {
+  it('should render BreedCardGallery component', async () => {
     await act(async () => {
-      const {container} = render(<BreedRandomImage {...props} />);
+      const {container} = render(<BreedCardGallery {...props} />);
       expect(container).toBeTruthy();
     });
   });
   it('should render call getRandomImageByBreed service', async () => {
     await act(async () => {
-      await render(<BreedRandomImage {...props} />);
+      await render(<BreedCardGallery {...props} />);
     });
     expect(getRandomImageByBreed).toHaveBeenCalledWith(props.breedName);
   });

@@ -1,7 +1,8 @@
-import {ResponseRandomImageByBreed} from '../../../common/responseTypes';
-import BreedImage from '../../atoms/BreedImage/BreedImage';
-import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
+import Link from 'next/link';
 import React, {useEffect, useState} from 'react';
+import {ResponseRandomImageByBreed} from '../../../common/responseTypes';
+import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
+import BreedImage from '../../atoms/DogImage/DogImage';
 
 export interface BreedRandomImageProps {
   breedName: string;
@@ -25,11 +26,12 @@ const BreedRandomImage: React.FC<BreedRandomImageProps> = ({breedName}) => {
   useEffect(() => {
     getData();
   }, []);
+
   return (
-    <div>
+    <Link type="button" href={`/breed/${breedName}`}>
       <h1>{breedName}</h1>
       {status && <BreedImage breedName={breedName} imageUrl={breedImage} />}
-    </div>
+    </Link>
   );
 };
 export default BreedRandomImage;

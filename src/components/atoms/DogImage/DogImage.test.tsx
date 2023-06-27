@@ -1,15 +1,15 @@
-import BreedImage, {BreedImageProps} from './BreedImage';
-import {render, screen} from '@testing-library/react';
 import React from 'react';
+import {render, screen} from '@testing-library/react';
+import DogImage, {DogImageProps} from './DogImage';
 
-describe('BreedImage test', () => {
-  const props: BreedImageProps = {
+describe('DogImage test', () => {
+  const props: DogImageProps = {
     breedName: 'hound',
     imageUrl: 'https://images.dog.ceo/breeds/hound-english/n02089973_289.jpg',
   };
 
-  it('should render BreedImage component', () => {
-    const {container} = render(<BreedImage {...props} />);
+  it('should render DogImage component', () => {
+    const {container} = render(<DogImage {...props} />);
     expect(container).toBeTruthy();
 
     const imageElement = screen.getByAltText(`Image of ${props.breedName} breed`) as HTMLImageElement;
