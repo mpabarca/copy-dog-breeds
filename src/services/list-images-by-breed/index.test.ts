@@ -29,14 +29,12 @@ describe('getListImagesByBreed Test', () => {
       ],
       status: 'success',
     };
-    const amountImages = mockResponse.message.length;
 
     fetchMock.mockResponse(JSON.stringify(mockResponse), {status: 200});
 
     const result = await getListImagesByBreed(breed);
     expect(result).toEqual(mockResponse);
-    expect(fetchMock).toHaveBeenCalledWith(`https://dog.ceo/api/breed/hound/images/random/${amountImages}`);
-    expect(result.message).toHaveLength(amountImages);
+    expect(fetchMock).toHaveBeenCalledWith(`https://dog.ceo/api/breed/${breed}/images`);
   });
 
   it('should return getListImagesByBreed error', async () => {

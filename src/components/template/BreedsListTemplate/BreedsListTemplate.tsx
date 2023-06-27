@@ -8,7 +8,7 @@ interface BreedsListTemplateProps {
 const BreedsListTemplate: React.FC<BreedsListTemplateProps> = ({breedsList}) => {
   return (
     <>
-      <BreedCardGallery breedsList={breedsList} />
+      <BreedCardGallery list={breedsList} showIcon={false} callImageAPI={true} shouldRedirect={true} />
     </>
   );
 };

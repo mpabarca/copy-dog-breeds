@@ -1,33 +1,22 @@
 import React from 'react';
+import BreedCardGallery from '../../organisms/BreedCardGallery/BreedCardGallery';
 
 type BreedTemplateProps = {
   breedName: string;
+  breedListImages: string[];
 };
 
-const BreedTemplate: React.FC<BreedTemplateProps> = ({breedName}) => {
-  const [breedImage, setBreedImage] = useState<string>('');
-  const [status, setStatus] = useState<boolean>(true);
-
-  const getData = async () => {
-    try {
-      const response: ResponseRandomImageByBreed = await getRandomImageByBreed(breedName);
-      setBreedImage(response.message);
-      setStatus(true);
-    } catch (error: any) {
-      console.error(error instanceof Error ? error.message : error);
-      setStatus(false);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
+const BreedTemplate: React.FC<BreedTemplateProps> = ({breedListImages, breedName}) => {
   return (
-    <div>
-      <h2>{breedName}</h2>
-      <span>En template</span>
-    </div>
+    <>
+      <BreedCardGallery
+        list={breedListImages}
+        breedName={breedName}
+        showIcon={true}
+        callImageAPI={false}
+        shouldRedirect={false}
+      />
+    </>
   );
 };
 export default BreedTemplate;

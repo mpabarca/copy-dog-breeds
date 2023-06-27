@@ -2,19 +2,25 @@ import React from 'react';
 import DogCard from '../DogCard/DogCard';
 
 export interface BreedCardGalleryProps {
-  breedsList: string[];
+  list: string[];
+  breedName?: string;
+  showIcon: boolean;
+  callImageAPI: boolean;
+  shouldRedirect: boolean;
 }
 
-const BreedCardGallery: React.FC<BreedCardGalleryProps> = ({breedsList}) => {
+const BreedCardGallery: React.FC<BreedCardGalleryProps> = (props: BreedCardGalleryProps) => {
+  const {list, breedName, showIcon, callImageAPI, shouldRedirect} = props;
+
   return (
     <>
-      {breedsList.map((breed, index) => (
+      {list.map((breed, index) => (
         <DogCard
-          key={`index-breeRandomImage-${index}`}
-          breedName={breed}
-          showIcon={false}
-          callImageAPI={true}
-          shouldRedirect={true}
+          key={`index-dogCard-${index}`}
+          breedName={(breed || breedName) as string}
+          showIcon={showIcon}
+          callImageAPI={callImageAPI}
+          shouldRedirect={shouldRedirect}
         />
       ))}
     </>
