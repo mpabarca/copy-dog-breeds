@@ -1,12 +1,12 @@
 import React from 'react';
 import BreedCardGallery from '../../organisms/BreedCardGallery/BreedCardGallery';
 
-type BreedTemplateProps = {
+export type BreedDetailTemplateProps = {
   breedName: string;
   breedListImages: string[];
 };
 
-const BreedTemplate: React.FC<BreedTemplateProps> = ({breedListImages, breedName}) => {
+const BreedDetailTemplate: React.FC<BreedDetailTemplateProps> = ({breedListImages, breedName}) => {
   return (
     <>
       <BreedCardGallery
@@ -19,4 +19,4 @@ const BreedTemplate: React.FC<BreedTemplateProps> = ({breedListImages, breedName
     </>
   );
 };
-export default BreedTemplate;
+export default BreedDetailTemplate;
