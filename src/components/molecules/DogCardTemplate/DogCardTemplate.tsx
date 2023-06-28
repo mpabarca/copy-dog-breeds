@@ -28,7 +28,7 @@ const DogCardTemplate: React.FC<DogCardTemplateProps> = (props: DogCardTemplateP
         {showIcon && <FavoriteIcon isFavorite={true} />}
       </div>
       <div className=" box-borders flex justify-center items-center p-4">
-        <div className="relative object-cover overflow-hidden h-40 w-40 border-double border-8 border-secondary-color-black-500/75">
+        <div className="relative overflow-hidden h-52 w-52 border-double border-8 border-secondary-color-black-500/75">
           <DogImage imageUrl={imageUrl} />
         </div>
       </div>
