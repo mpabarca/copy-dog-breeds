@@ -18,17 +18,13 @@ const DogCardTemplate: React.FC<DogCardTemplateProps> = (props: DogCardTemplateP
   const {breedName, imageUrl, showIcon, showBreedName} = props;
 
   return (
-    <CardContainer
-      className="flex-1 w-full text-s text-main-color-black bg-white
-        flex flex-col
-        border-2 border-black"
-    >
-      <div className="flex items-center justify-end bg-main-color-pink p-4 ">
+    <CardContainer className="flex-1 w-full text-s text-main-color-black bg-white flex flex-col border-2 border-black">
+      <div className="flex items-center justify-end bg-white px-4 pt-4 ">
         {showBreedName && <span className="text-s font-regular">{capitalizeFirstLetter(breedName)}</span>}
         {showIcon && <FavoriteIcon isFavorite={true} />}
       </div>
       <div className=" box-borders flex justify-center items-center p-4">
-        <div className="relative overflow-hidden h-52 w-52 border-double border-8 border-secondary-color-black-500/75">
+        <div className="relative overflow-hidden h-52 md:h-64 w-full">
           <DogImage imageUrl={imageUrl} />
         </div>
       </div>

@@ -12,7 +12,7 @@ export interface BreedCardGalleryProps {
 const BreedCardGallery: React.FC<BreedCardGalleryProps> = (props: BreedCardGalleryProps) => {
   const {list, showIcon, callImageAPI, shouldRedirect, breedName = ''} = props;
   return (
-    <div className="w-full grid gap-10 auto-rows-fr grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center">
+    <div className="w-full grid gap-20 auto-rows-fr grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center">
       {list.map((element, index) => (
         <DogCard
           key={`index-dogCard-${index}`}

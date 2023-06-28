@@ -9,9 +9,9 @@ const FavoriteIcon: React.FC<FavoriteIconProps> = ({isFavorite}) => {
   return (
     <>
       {isFavorite ? (
-        <AiFillHeart data-testid="fill-heart-icon" className="h-5 w-5 font-bold text-main-color-orange" />
+        <AiFillHeart data-testid="fill-heart-icon" size={28} className="ml-4 font-bold text-main-color-orange" />
       ) : (
-        <AiOutlineHeart data-testid="outline-heart-icon" className="h-5 w-5 font-bold" />
+        <AiOutlineHeart data-testid="outline-heart-icon" size={28} className="ml-4 font-bold" />
       )}
     </>
   );
