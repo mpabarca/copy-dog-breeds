@@ -1,32 +1,27 @@
 import React from 'react';
 import {act, render} from '@testing-library/react';
 import FavoriteIcon, {FavoriteIconProps} from './FavoriteIcon';
-import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
-
-jest.mock('../../../services/random-image-by-breed', () => ({
-  getRandomImageByBreed: jest.fn().mockResolvedValue({
-    message: 'https://dog.ceo/api/breed/hound/images/random',
-  }),
-}));
-
-jest.mock('../../atoms/BreedImage/BreedImage');
 
 describe('FavoriteIcon test', () => {
   const props: FavoriteIconProps = {
-    breedName: 'hound',
+    isFavorite: true,
   };
 
-  it('should render FavoriteIcon component', async () => {
+  it('should render FavoriteIcon component and Fill Icon when isFavorite is true', async () => {
     await act(async () => {
-      const {container} = render(<FavoriteIcon {...props} />);
-      expect(container).toBeTruthy();
+      render(<FavoriteIcon {...props} />);
     });
+    const iconElement = document.querySelector('[data-testid="fill-heart-icon"]');
+    expect(iconElement).toBeTruthy();
   });
-  it('should render call getRandomImageByBreed service', async () => {
+  it('should render FavoriteIcon component and Outline Icon when isFavorite is true', async () => {
+    const isNotFavoriteProps: FavoriteIconProps = {
+      isFavorite: false,
+    };
     await act(async () => {
-      await render(<FavoriteIcon {...props} />);
+      render(<FavoriteIcon {...isNotFavoriteProps} />);
     });
-    expect(getRandomImageByBreed).toHaveBeenCalledWith(props.breedName);
+    const iconElement = document.querySelector('[data-testid="outline-heart-icon"]');
+    expect(iconElement).toBeTruthy();
   });
-  // -> To do: Test when failed call and show some message
 });

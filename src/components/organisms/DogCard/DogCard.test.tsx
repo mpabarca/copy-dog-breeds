@@ -30,7 +30,6 @@ describe('DogCard test', () => {
       expect(container).toBeTruthy();
     });
   });
-
   it('should render DogCard component with redirected card', async () => {
     await act(async () => {
       render(<DogCard {...props} />);
@@ -46,22 +45,16 @@ describe('DogCard test', () => {
       callImageAPI: false,
       shouldRedirect: false,
     };
-
     await act(async () => {
       render(<DogCard {...iconProps} />);
     });
-
     const iconCardElement = document.querySelector('[data-testid="icon-dog-card"]');
     expect(iconCardElement).toBeTruthy();
   });
-
   it('should call getRandomImageByBreed service when callImageAPI is true', async () => {
     await act(async () => {
       await render(<DogCard {...props} />);
     });
-
     expect(getRandomImageByBreed).toHaveBeenCalledWith(props.breedName);
   });
-
-  // TODO: Test when failed call and show some message
 });
