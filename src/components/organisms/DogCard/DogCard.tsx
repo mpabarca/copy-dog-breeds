@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React, {useEffect, useState} from 'react';
 import {ResponseRandomImageByBreed} from '../../../common/responseTypes';
 import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
-import DogImage from '../../atoms/DogImage/DogImage';
 import DogCardTemplate from '../../molecules/DogCardTemplate/DogCardTemplate';
 
 export interface DogCardProps {
