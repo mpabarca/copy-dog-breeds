@@ -617,7 +617,7 @@
   "resolved" "https://registry.npmjs.org/@next/env/-/env-13.4.7.tgz"
   "version" "13.4.7"
 
-"@next/eslint-plugin-next@13.4.7":
+"@next/eslint-plugin-next@^13.4.7", "@next/eslint-plugin-next@13.4.7":
   "integrity" "sha512-ANEPltxzXbyyG7CvqxdY4PmeM5+RyWdAJGufTHnU+LA/i3J6IDV2r8Z4onKwskwKEhwqzz5lMaSYGGXLyHX+mg=="
   "resolved" "https://registry.npmjs.org/@next/eslint-plugin-next/-/eslint-plugin-next-13.4.7.tgz"
   "version" "13.4.7"

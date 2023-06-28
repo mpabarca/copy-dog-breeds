@@ -1,9 +1,9 @@
 import React from 'react';
 import {act, render} from '@testing-library/react';
-import BreedDetailPage from './[breedName]';
-import {getListImagesByBreed} from '../../services/list-images-by-breed';
+import BreedDetailPage from '../pages/breed/[breedName]';
+import {getListImagesByBreed} from '../services/list-images-by-breed';
 
-jest.mock('../../services/list-images-by-breed', () => ({
+jest.mock('../services/list-images-by-breed', () => ({
   getListImagesByBreed: jest.fn().mockResolvedValue({
     message: [
       'https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg',
@@ -23,7 +23,7 @@ jest.mock('next/router', () => ({
   })),
 }));
 
-jest.mock('../../components/template/BreedDetailTemplate/BreedDetailTemplate');
+jest.mock('../components/template/BreedDetailTemplate/BreedDetailTemplate');
 
 describe('BreedDetailPage test', () => {
   it('should render BreedDetailPage component', async () => {
