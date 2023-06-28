@@ -44,7 +44,7 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
   );
 
   const iconCard = (
-    <div data-testid="icon-dog-card" className="flex -1 h-full max-w-xs">
+    <div data-testid="icon-dog-card" className="flex h-full min-w-full mx-10">
       <DogCardTemplate showIcon={showIcon} imageUrl={breedImage} breedName={breedName} showBreedName={false} />
     </div>
   );

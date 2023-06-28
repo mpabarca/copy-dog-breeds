@@ -9,7 +9,7 @@ const Layout: React.FC<LayoutProps> = ({children}) => {
     <div className="flex flex-col min-h-screen bg-gradient-radial bg-main-color-pink ">
       <header className="py-4">{/* Add your header content here */}</header>
 
-      <main className="flex-grow mx-auto px-4 max-w-sm xl:max-w-screen-xl md:max-w-screen-md sm:w-90 w-full">
+      <main className="flex-grow mx-auto px-10 max-w-sm xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-md sm:w-90 w-full">
         {children}
       </main>
 
