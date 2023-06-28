@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import BreedsListTemplate from '../../components/template/BreedsListTemplate/BreedsListTemplate';
 import {ResponseListAllBreeds} from '../../common/responseTypes';
 import {getListAllBreeds} from '../../services/list-all-breeds';
+import Layout from '../../components/layout/Layout';
 
 const ListBreedsPage: React.FC = () => {
   const [breedsList, setBreedsList] = useState<string[]>([]);
@@ -21,6 +22,6 @@ const ListBreedsPage: React.FC = () => {
   useEffect(() => {
     getData();
   }, []);
-  return <>{status && <BreedsListTemplate breedsList={breedsList} />}</>;
+  return <Layout>{status && <BreedsListTemplate breedsList={breedsList} />}</Layout>;
 };
 export default ListBreedsPage;

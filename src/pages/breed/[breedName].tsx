@@ -3,6 +3,7 @@ import {useRouter} from 'next/router';
 import BreedDetailTemplate from '../../components/template/BreedDetailTemplate/BreedDetailTemplate';
 import {getListImagesByBreed} from '../../services/list-images-by-breed';
 import {ResponseListImagesByBreed} from '../../common/responseTypes';
+import Layout from '../../components/layout/Layout';
 
 const BreedDetailPage: React.FC = () => {
   const router = useRouter();
@@ -26,6 +27,10 @@ const BreedDetailPage: React.FC = () => {
     breedName && getData();
   }, [breedName]);
 
-  return <>{status && <BreedDetailTemplate breedName={breedName as string} breedListImages={breedListImages} />}</>;
+  return (
+    <Layout>
+      {status && <BreedDetailTemplate breedName={breedName as string} breedListImages={breedListImages} />}
+    </Layout>
+  );
 };
 export default BreedDetailPage;

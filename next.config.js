@@ -8,6 +8,9 @@ const nextConfig = {
   images: {
     domains: ['images.dog.ceo'],
   },
+  compiler: {
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;
