@@ -3,7 +3,7 @@ import BreedCardGallery from '../../organisms/BreedCardGallery/BreedCardGallery'
 import Button from '../../atoms/Button/Button';
 import {useRouter} from 'next/router';
 
-interface BreedsListTemplateProps {
+export interface BreedsListTemplateProps {
   breedsList: string[];
 }
 
