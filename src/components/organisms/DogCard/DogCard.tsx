@@ -33,14 +33,14 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
   }, [callImageAPI, imageUrl, breedName]);
 
   const redirectCard = (
-    <Link type="button" href={`/breed/${breedName}`}>
+    <Link type="button" href={`/breed/${breedName}`} data-testid="redirect-dog-card">
       <h1>{breedName}</h1>
       {status && <DogImage breedName={breedName} imageUrl={breedImage} />}
     </Link>
   );
 
   const iconCard = (
-    <div>
+    <div data-testid="icon-dog-card">
       {showIcon && <button>Icon</button>}
       {status && <DogImage imageUrl={breedImage} />}
     </div>

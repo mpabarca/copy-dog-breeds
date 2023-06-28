@@ -3,6 +3,7 @@
 const config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['jest.setup.ts'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts', '@testing-library/jest-dom/extend-expect'],
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx}'],
@@ -21,6 +22,13 @@ const config = {
   maxWorkers: 6,
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
+  },
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        jsx: 'react-jsx',
+      },
+    },
   },
 };
 

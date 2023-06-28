@@ -1,7 +1,6 @@
 import React from 'react';
 import {act, render} from '@testing-library/react';
 import BreedCardGallery, {BreedCardGalleryProps} from './BreedCardGallery';
-import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
 
 jest.mock('../../../services/random-image-by-breed', () => ({
   getRandomImageByBreed: jest.fn().mockResolvedValue({
@@ -9,11 +8,17 @@ jest.mock('../../../services/random-image-by-breed', () => ({
   }),
 }));
 
-jest.mock('../../atoms/BreedImage/BreedImage');
+jest.mock('../../organisms/DogCard/DogCard');
 
 describe('BreedCardGallery test', () => {
+  const listBreeds: string[] = ['affenpinscher', 'african', 'airedale', 'akita'];
+
   const props: BreedCardGalleryProps = {
+    list: listBreeds,
     breedName: 'hound',
+    showIcon: false,
+    callImageAPI: true,
+    shouldRedirect: true,
   };
 
   it('should render BreedCardGallery component', async () => {
@@ -21,12 +26,6 @@ describe('BreedCardGallery test', () => {
       const {container} = render(<BreedCardGallery {...props} />);
       expect(container).toBeTruthy();
     });
-  });
-  it('should render call getRandomImageByBreed service', async () => {
-    await act(async () => {
-      await render(<BreedCardGallery {...props} />);
-    });
-    expect(getRandomImageByBreed).toHaveBeenCalledWith(props.breedName);
   });
   // -> To do: Test when failed call and show some message
 });
