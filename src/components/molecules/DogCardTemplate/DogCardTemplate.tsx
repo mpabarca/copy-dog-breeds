@@ -2,6 +2,7 @@ import React from 'react';
 import DogImage from '../../atoms/DogImage/DogImage';
 import {CardContainer} from './DogCardTemplate.style';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
+import {capitalizeFirstLetter} from '../../../utils/helper';
 
 export interface DogCardTemplateProps {
   breedName: string;
@@ -23,7 +24,7 @@ const DogCardTemplate: React.FC<DogCardTemplateProps> = (props: DogCardTemplateP
         border-2 border-black"
     >
       <div className="flex items-center justify-end bg-main-color-pink p-4 ">
-        {showBreedName && <span className="text-s font-regular">{breedName}</span>}
+        {showBreedName && <span className="text-s font-regular">{capitalizeFirstLetter(breedName)}</span>}
         {showIcon && <FavoriteIcon isFavorite={true} />}
       </div>
       <div className=" box-borders flex justify-center items-center p-4">
