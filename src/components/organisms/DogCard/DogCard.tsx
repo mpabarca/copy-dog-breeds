@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {ResponseRandomImageByBreed} from '../../../common/responseTypes';
 import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
 import DogImage from '../../atoms/DogImage/DogImage';
+import DogCardTemplate from '../../molecules/DogCardTemplate/DogCardTemplate';
 
 export interface DogCardProps {
   breedName: string;
@@ -33,16 +34,19 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
   }, [callImageAPI, imageUrl, breedName]);
 
   const redirectCard = (
-    <Link type="button" href={`/breed/${breedName}`} data-testid="redirect-dog-card">
-      <h1>{breedName}</h1>
-      {status && <DogImage breedName={breedName} imageUrl={breedImage} />}
+    <Link
+      type="button"
+      href={`/breed/${breedName}`}
+      data-testid="redirect-dog-card"
+      className="flex h-full min-w-full mx-10"
+    >
+      <DogCardTemplate showIcon={showIcon} imageUrl={breedImage} breedName={breedName} showBreedName={true} />
     </Link>
   );
 
   const iconCard = (
-    <div data-testid="icon-dog-card">
-      {showIcon && <button>Icon</button>}
-      {status && <DogImage imageUrl={breedImage} />}
+    <div data-testid="icon-dog-card" className="flex -1 h-full max-w-xs">
+      <DogCardTemplate showIcon={showIcon} imageUrl={breedImage} breedName={breedName} showBreedName={false} />
     </div>
   );
 
