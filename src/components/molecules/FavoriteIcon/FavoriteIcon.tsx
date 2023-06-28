@@ -1,37 +1,13 @@
-import Link from 'next/link';
-import React, {useEffect, useState} from 'react';
-import {ResponseRandomImageByBreed} from '../../../common/responseTypes';
-import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
-import BreedImage from '../../atoms/DogImage/DogImage';
+import React from 'react';
+import {AiFillHeart, AiOutlineHeart} from 'react-icons/ai';
 
 export interface FavoriteIconProps {
-  breedName: string;
+  isFavorite: boolean;
 }
 
-const FavoriteIcon: React.FC<FavoriteIconProps> = ({breedName}) => {
-  const [breedImage, setBreedImage] = useState<string>('');
-  const [status, setStatus] = useState<boolean>(true);
-
-  const getData = async () => {
-    try {
-      const response: ResponseRandomImageByBreed = await getRandomImageByBreed(breedName);
-      setBreedImage(response.message);
-      setStatus(true);
-    } catch (error: any) {
-      console.error(error instanceof Error ? error.message : error);
-      setStatus(false);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
+const FavoriteIcon: React.FC<FavoriteIconProps> = ({isFavorite}) => {
   return (
-    <Link type="button" href={`/breed/${breedName}`}>
-      <h1>{breedName}</h1>
-      {status && <BreedImage breedName={breedName} imageUrl={breedImage} />}
-    </Link>
+    <>{isFavorite ? <AiFillHeart className="h-5 w-5 font-bold text-main-color-orange" /> : <AiOutlineHeart className="h-5 w-5 font-bold" />}</>
   );
 };
 export default FavoriteIcon;

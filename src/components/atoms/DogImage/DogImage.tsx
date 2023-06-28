@@ -7,6 +7,6 @@ export interface DogImageProps {
 }
 
 const DogImage: React.FC<DogImageProps> = ({breedName, imageUrl}) => {
-  return <>{imageUrl && <Image width={100} height={100} src={imageUrl} alt={`Image of ${breedName} breed`} />}</>;
+  return <>{imageUrl && <Image fill={true} src={imageUrl} alt={`Image of ${breedName} breed`} />}</>;
 };
 export default DogImage;

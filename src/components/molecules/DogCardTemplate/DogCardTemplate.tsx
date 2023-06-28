@@ -1,6 +1,7 @@
 import React from 'react';
 import DogImage from '../../atoms/DogImage/DogImage';
 import {CardContainer} from './DogCardTemplate.style';
+import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 
 export interface DogCardTemplateProps {
   breedName: string;
@@ -17,15 +18,19 @@ const DogCardTemplate: React.FC<DogCardTemplateProps> = (props: DogCardTemplateP
 
   return (
     <CardContainer
-      className="flex-1 w-full text-s text-main-color-black bg-main-color-pink
+      className="flex-1 w-full text-s text-main-color-black bg-white
         flex flex-col
-        border-2 border-black py-6 px-4"
+        border-2 border-black"
     >
-      <div className="flex items-center justify-between mb-4 ">
+      <div className="flex items-center justify-end bg-main-color-pink p-4 ">
         {showBreedName && <span className="text-s font-regular">{breedName}</span>}
-        {showIcon && <button className="bg-gray-200 px-3 py-1 rounded-lg">Icon</button>}
+        {showIcon && <FavoriteIcon isFavorite={true} />}
       </div>
-      <DogImage imageUrl={imageUrl} />
+      <div className=" box-borders flex justify-center items-center p-4">
+        <div className="relative object-cover overflow-hidden h-40 w-40 border-double border-8 border-secondary-color-black-500/75">
+          <DogImage imageUrl={imageUrl} />
+        </div>
+      </div>
     </CardContainer>
   );
 };
