@@ -7,13 +7,13 @@ export interface FavoriteIconProps {
 
 const FavoriteIcon: React.FC<FavoriteIconProps> = ({isFavorite}) => {
   return (
-    <>
+    <button className='ml-4'>
       {isFavorite ? (
-        <AiFillHeart data-testid="fill-heart-icon" size={28} className="ml-4 font-bold text-main-color-orange" />
+        <AiFillHeart data-testid="fill-heart-icon" size={28} className="font-bold text-main-color-orange hover:text-secondary-color-gray-light" />
       ) : (
-        <AiOutlineHeart data-testid="outline-heart-icon" size={28} className="ml-4 font-bold" />
+        <AiOutlineHeart data-testid="outline-heart-icon" size={28} className="font-bold hover:text-main-color-orange" />
       )}
-    </>
+    </button>
   );
 };
 export default FavoriteIcon;

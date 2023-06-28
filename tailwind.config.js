@@ -20,7 +20,7 @@ module.exports = {
         'main-color-orange': '#F0221D',
         'secondary-color-black': '#111011',
         'secondary-color-gray-light': '#A49C98',
-        'secondary-color-gray-dark': '#605655',
+        'secondary-color-gray-dark': '#494949',
         'secondary-color-purple': '#97768A',
       },
     },
