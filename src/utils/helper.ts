@@ -18,3 +18,10 @@ export const getBreedImageObject = (imageUrl: string): ImageObjectType => {
     .split('_');
   return {idBreed: arrayId[0], idBreedImage: arrayId[1], imageUrl: imageUrl};
 };
+
+export const checkObjectInList = (list: ImageObjectType[], element: ImageObjectType): boolean => {
+  return !!list.filter(
+    (listElement) =>
+      listElement.idBreed == element.idBreed && listElement.idBreedImage == element.idBreedImage
+  ).length
+};

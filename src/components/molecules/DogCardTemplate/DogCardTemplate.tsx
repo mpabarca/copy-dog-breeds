@@ -10,7 +10,7 @@ export interface DogCardTemplateProps {
   showIcon: boolean;
   showBreedName: boolean;
   isFavorite?: boolean;
-  handleClickFavoriteIcon?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleClickFavoriteIcon?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 export type tailwindClassesCardType = {
   [key: string]: string;

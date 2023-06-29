@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useEffect} from 'react';
 import {ImageObjectType} from '../common/types';
 
 interface FavoritesContextType {
@@ -19,6 +19,17 @@ export const FavoritesContext = React.createContext<FavoritesContextType>({
 
 export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({children}) => {
   const [favorites, setFavorites] = React.useState<ImageObjectType[]>([]);
+
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem('favorites');
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   const addFavorite = (newFavorite: ImageObjectType) => {
     setFavorites((prevFavorites) => [...prevFavorites, newFavorite]);

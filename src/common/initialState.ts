@@ -5,3 +5,7 @@ export const initialImageObjectState: ImageObjectType = {
   idBreedImage: '',
   imageUrl: '',
 };
+
+export const initialImageObjectListState: ImageObjectType[] = [
+  initialImageObjectState
+];

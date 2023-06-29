@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {ResponseRandomImageByBreed} from '../../../common/responseTypes';
 import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
 import DogCardTemplate from '../../molecules/DogCardTemplate/DogCardTemplate';
 import {ImageObjectType} from '../../../common/types';
 import {initialImageObjectState} from '../../../common/initialState';
 import {getBreedImageObject} from '../../../utils/helper';
+import {FavoritesContext} from '../../../store/FavoritesContext';
 
 export interface DogCardProps {
   breedName: string;
@@ -18,8 +19,12 @@ export interface DogCardProps {
 
 const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
   const {breedName, imageUrl, showIcon, callImageAPI, shouldRedirect, isFavorite} = props;
+
+  const {addFavorite, removeFavorite} = useContext(FavoritesContext);
+
   const [breedImageObject, setBreedImageObject] = useState<ImageObjectType>(initialImageObjectState);
   const [status, setStatus] = useState<boolean>(true);
+  const [favoriteClickOn, setFavoriteClickOn] = useState(isFavorite)
 
   const getData = async () => {
     try {
@@ -32,11 +37,24 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
     }
   };
 
-  const handleClickFavoriteIcon = () => {};
+  const handleAddFavorite = () => {
+    addFavorite(breedImageObject);
+  };
+
+  const handleRemoveFavorite = () => {
+    removeFavorite(breedImageObject);
+  };
 
   useEffect(() => {
     callImageAPI ? getData() : setBreedImageObject(getBreedImageObject(imageUrl));
   }, [callImageAPI, imageUrl, breedName]);
+
+  const handleClickFavoriteIcon = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    console.log('click on icon');
+    console.log(breedImageObject);
+    isFavorite ? handleRemoveFavorite() : handleAddFavorite();
+  }
 
   const redirectCard = (
     <Link
