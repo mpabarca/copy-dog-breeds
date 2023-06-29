@@ -13,16 +13,22 @@ const BreedCardGallery: React.FC<BreedCardGalleryProps> = (props: BreedCardGalle
   const {list, showIcon, callImageAPI, shouldRedirect, breedName = ''} = props;
   return (
     <div className="w-full grid gap-20 auto-rows-fr grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center">
-      {list.map((element, index) => (
-        <DogCard
-          key={`index-dogCard-${index}`}
-          showIcon={showIcon}
-          callImageAPI={callImageAPI}
-          shouldRedirect={shouldRedirect}
-          imageUrl={callImageAPI ? '' : element}
-          breedName={callImageAPI ? element : breedName}
-        />
-      ))}
+      {list.map((element, index) => {
+        if(!callImageAPI) {
+          // call getItems -> Favorites
+        }
+        return (
+          <DogCard
+            key={`index-dogCard-${index}`}
+            showIcon={showIcon}
+            callImageAPI={callImageAPI}
+            shouldRedirect={shouldRedirect}
+            imageUrl={callImageAPI ? '' : element}
+            breedName={callImageAPI ? element : breedName}
+            isFavorite={true}
+          />
+        );
+      })}
     </div>
   );
 };

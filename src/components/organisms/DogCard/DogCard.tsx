@@ -13,10 +13,11 @@ export interface DogCardProps {
   showIcon: boolean;
   callImageAPI: boolean;
   shouldRedirect: boolean;
+  isFavorite: boolean;
 }
 
 const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
-  const {breedName, imageUrl, showIcon, callImageAPI, shouldRedirect} = props;
+  const {breedName, imageUrl, showIcon, callImageAPI, shouldRedirect, isFavorite} = props;
   const [breedImageObject, setBreedImageObject] = useState<ImageObjectType>(initialImageObjectState);
   const [status, setStatus] = useState<boolean>(true);
 
@@ -30,6 +31,8 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
       setStatus(false);
     }
   };
+
+  const handleClickFavoriteIcon = () => {};
 
   useEffect(() => {
     callImageAPI ? getData() : setBreedImageObject(getBreedImageObject(imageUrl));
@@ -58,6 +61,8 @@ const DogCard: React.FC<DogCardProps> = (props: DogCardProps) => {
         imageUrl={breedImageObject.imageUrl}
         breedName={breedName}
         showBreedName={false}
+        isFavorite={isFavorite}
+        handleClickFavoriteIcon={handleClickFavoriteIcon}
       />
     </div>
   );

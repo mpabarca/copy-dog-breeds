@@ -1,15 +1,25 @@
 import React from 'react';
-import {act, render} from '@testing-library/react';
+import {act, render, screen} from '@testing-library/react';
 import DogCard, {DogCardProps} from './DogCard';
 import {getRandomImageByBreed} from '../../../services/random-image-by-breed';
+import {getBreedImageObject} from '../../../utils/helper';
 
 jest.mock('../../../services/random-image-by-breed', () => ({
   getRandomImageByBreed: jest.fn().mockResolvedValue({
-    message: 'https://dog.ceo/api/breed/hound/images/random',
+    message: 'https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg',
   }),
+}));
+jest.mock('../../../utils/helper', () => ({
+  getBreedImageObject: jest.fn().mockResolvedValue({
+    idBreed: 'n02088094',
+      idBreedImage: '1003',
+      imageUrl: 'https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg',
+  }),
+  capitalizeFirstLetter: jest.fn(),
 }));
 
 jest.mock('../../atoms/DogImage/DogImage');
+jest.mock('../../molecules/DogCardTemplate/DogCardTemplate');
 
 describe('DogCard test', () => {
   const props: DogCardProps = {
@@ -18,6 +28,7 @@ describe('DogCard test', () => {
     showIcon: false,
     callImageAPI: true,
     shouldRedirect: true,
+    isFavorite: false,
   };
 
   afterEach(() => {
@@ -34,10 +45,14 @@ describe('DogCard test', () => {
     await act(async () => {
       render(<DogCard {...props} />);
     });
-    const redirectCardElement = document.querySelector('[data-testid="redirect-dog-card"]');
-    expect(redirectCardElement).toBeTruthy();
+    expect(screen.getByTestId('redirect-dog-card')).toBeInTheDocument();
   });
-
+  it('should call getRandomImageByBreed service when callImageAPI is true', async () => {
+    await act(async () => {
+      await render(<DogCard {...props} />);
+    });
+    expect(getRandomImageByBreed).toHaveBeenCalledWith(props.breedName);
+  });
   it('should render DogCard component with icon card', async () => {
     const iconProps: DogCardProps = {
       ...props,
@@ -48,13 +63,15 @@ describe('DogCard test', () => {
     await act(async () => {
       render(<DogCard {...iconProps} />);
     });
-    const iconCardElement = document.querySelector('[data-testid="icon-dog-card"]');
-    expect(iconCardElement).toBeTruthy();
+    expect(screen.getByTestId('icon-dog-card')).toBeInTheDocument();
   });
-  it('should call getRandomImageByBreed service when callImageAPI is true', async () => {
+
+  it('should get Image Object when use getBreedImageObject function', async () => {
     await act(async () => {
-      await render(<DogCard {...props} />);
+      render(<DogCard {...props} />);
     });
-    expect(getRandomImageByBreed).toHaveBeenCalledWith(props.breedName);
+    expect(getBreedImageObject).toHaveBeenCalledWith(
+      'https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg'
+    );
   });
 });

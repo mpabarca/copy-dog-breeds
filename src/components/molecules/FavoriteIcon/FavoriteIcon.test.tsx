@@ -5,6 +5,7 @@ import FavoriteIcon, {FavoriteIconProps} from './FavoriteIcon';
 describe('FavoriteIcon test', () => {
   const props: FavoriteIconProps = {
     isFavorite: true,
+    handleClickFavoriteIcon: jest.fn(),
   };
 
   it('should render FavoriteIcon component and Fill Icon when isFavorite is true', async () => {
@@ -16,6 +17,7 @@ describe('FavoriteIcon test', () => {
   });
   it('should render FavoriteIcon component and Outline Icon when isFavorite is true', async () => {
     const isNotFavoriteProps: FavoriteIconProps = {
+      ...props,
       isFavorite: false,
     };
     await act(async () => {
